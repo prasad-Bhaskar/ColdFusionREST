@@ -1,0 +1,3 @@
+<cfoutput>
+    #getDirectoryFromPath(getCurrentTemplatePath())#
+</cfoutput>
