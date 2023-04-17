@@ -1,5 +1,5 @@
 <cfcomponent>
-    <cffunction  name="init" hint="constroctor of student">
+<!---     <cffunction  name="init" hint="constroctor of student"> 
         <cfargument  name="dsn" default="#application.dsn#">
         <cfset this.dsn = arguments.dsn>
     </cffunction>
@@ -8,5 +8,5 @@
         <cfquery name="getCourses" datasourse="#this.dsn#">
         </cfquery>
         <cfreturn getCourses>
-    </cffunction>
+    </cffunction>--->
 </cfcomponent>

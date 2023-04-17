@@ -5,14 +5,15 @@
         skipcfcerror:true
     }>
     <cfset this.mappings = structNew()>
-    <cfset this.mappings["/cfc"] = expandPath("/UsersAPI/restAPI/cfc")>
+    <cfset this.mappings["/cfc"] = expandPath("/ColdFusionRest/restAPI/cfc")>
+   
     <cffunction  name="onApplicationStart" returntype="boolean">
-        <cfset application.dsn = "restAPI">
+        <cfset application.datasource = "local">
         <cfset application.jwtKey = "%ng@dkdbW">
-        <cfset application.studentServises = new cfc.student(application.dsn)>
-        <cfset application.studentDAO = new cfc.studentDAO(application.dsn)>
+         <cfset application.studentServises = new cfc.student(application.datasource)>
+        <cfset application.studentDAO = new cfc.studentDAO(application.datasource)>
         <cfset application.utilServises = new cfc.util()>
-        <cfset restInitApplication(getDirectoryFromPath(getCurrentTemplatePath())&"restAPI", "API")>
+<!---         <cfset restInitApplication(getDirectoryFromPath(getCurrentTemplatePath())&"restAPI", 'restAPI')>  --->
         <cfreturn true>
     </cffunction>
     

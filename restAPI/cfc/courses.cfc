@@ -1,5 +1,5 @@
 <cfcomponent>
-    <cffunction  name="init" hint="constroctor of student">
+<!---     <cffunction  name="init" hint="constroctor of student"> 
         <cfargument  name="dsn" default="#application.dsn#">
         <cfset this.dsn = arguments.dsn>
     </cffunction>
@@ -10,5 +10,5 @@
     <cffunction  name="getCourses" returnType="any" access="public">
         <cfargument  name="coursesData" type="any" required="true">
         <cfreturn coursesDAO.registerStudent(arguments.coursesData)>       
-    </cffunction>
+    </cffunction>--->
 </cfcomponent>

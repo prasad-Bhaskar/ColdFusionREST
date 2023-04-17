@@ -5,7 +5,7 @@
 
 <!---  Student Spasific functions start from here... --->
   <!--- Function to validate token--->
-  <cffunction name="authenticate" returntype="any">
+<!---   <cffunction name="authenticate" returntype="any"> 
     <cfset var response = {}>
     <cfset requestData = GetHttpRequestData()>
     <cfif StructKeyExists( requestData.Headers, "authorization" )>
@@ -25,7 +25,7 @@
       <cfset response["message"] = "Authorization token invalid or not present.">
     </cfif>
     <cfreturn response>
-  </cffunction>
+  </cffunction>--->
 
   <cffunction name="registerStudent" access="remote" returntype="any" httpmethod="post" restpath="register" produces="application/json">
       <cfargument name="structForm" type="any" required="true">
@@ -36,8 +36,8 @@
   </cffunction> 
 
   <cffunction name="loginStudent" restpath="login" access="remote" returntype="struct" httpmethod="POST" produces="application/json">
-
       <cfargument name="structform" type="any" required="yes">
+<!---       <cfdump  var="#structform#" abort="true"> --->
   
       <cfset var response = {}>
       <cfset response = student.loginStudent(structform)>
@@ -46,18 +46,11 @@
   </cffunction>
 
   <!--- student specific functions --->
-  <cffunction name="getStudent" restpath="student/{email}" access="remote" returntype="struct" httpmethod="GET" produces="application/json">
-
-    <cfargument name="email" type="any" required="yes" restargsource="path"/>
+  <cffunction name="getStudentData" restpath="studentDetail" access="remote" returntype="struct" httpmethod="GET" produces="application/json">
+    <cfset local.limit = url.limit>
+    <cfset local.offset = url.offset>
     <cfset var response = {}>
-    <cfset verify = authenticate()>
-    <cfif not verify.success>
-      <cfset response["success"] = false>
-      <cfset response["message"] = verify.message>
-      <cfset response["errcode"] = 'no-token'>
-    <cfelse>
-      <cfset response = student.studentDetails(arguments.email)>
-    </cfif>
+    <cfset response = student.studentData(limit = local.limit, offset = local.offset)>
     <cfreturn response>
   </cffunction>
 <!---  Student Spasific functions ends from here... --->
@@ -70,5 +63,14 @@
   <cfreturn local.response>
 </cffunction>
 <!---  Courses Spasific functions ends from here... --->   
+
+
+
+<cffunction  name="test" access="remote" returntype="any" httpmethod="get" restpath="test" produces="application/json">
+  <cfset response = {}>
+  <cfset response.status = 200>
+  <cfset response.message = 'testing'>
+  <cfreturn response>
+</cffunction>
 
 </cfcomponent>
